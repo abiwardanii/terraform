@@ -1,8 +1,8 @@
 terraform {
   cloud {
-    organization = "antikode"
+    organization = "your_org"
     workspaces {
-      name = "learn-tfc-aws"
+      name = "test"
     }
   }
   required_providers {
@@ -19,16 +19,16 @@ provider "aws" {
   region  = "ap-southeast-1"
 }
 resource "aws_lightsail_key_pair" "lg_key_pair" {
-  name = "compass_ls"
+  name = "name"
 }
-resource "aws_lightsail_instance" "compass_fe" {
-  name              = "compass_fe"
+resource "aws_lightsail_instance" "test" {
+  name              = "test"
   availability_zone = "ap-southeast-1a"
   blueprint_id      = "ubuntu_22_04"
   bundle_id         = "small_2_0"
-  key_pair_name     = "compass_ls"
+  key_pair_name     = "test"
   tags = {
-    Name = "Compass FE"
-    Project = "Compass"
+    Name = "name"
+    Project = "project"
   }
 }
