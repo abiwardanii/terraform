@@ -1,8 +1,8 @@
 terraform {
   cloud {
-    organization = "your_org"
+    organization = "antikode"
     workspaces {
-      name = "test"
+      name = "s3-test"
     }
   }
   required_providers {
@@ -18,17 +18,12 @@ terraform {
 provider "aws" {
   region  = "ap-southeast-1"
 }
-resource "aws_lightsail_key_pair" "lg_key_pair" {
-  name = "name"
-}
-resource "aws_lightsail_instance" "test" {
-  name              = "test"
-  availability_zone = "ap-southeast-1a"
-  blueprint_id      = "ubuntu_22_04"
-  bundle_id         = "small_2_0"
-  key_pair_name     = "test"
+
+resource "aws_s3_bucket" "compass" {
+  bucket = "compass-ecom-bucket"
+
   tags = {
-    Name = "name"
-    Project = "project"
+    Name        = "Compass"
+    Project = "Compass"
   }
 }
