@@ -21,7 +21,7 @@ provider "aws" {
 
 resource "aws_ami_from_instance" "compass" {
   name               = "compass_ami"
-  source_instance_id = "i-0ed51a002edc6b739"
+  source_instance_id = "i-07977d7ede714858e"
   tags = {
     Name = "compass_fe"
     Project = "Compass"
