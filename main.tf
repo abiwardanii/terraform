@@ -36,21 +36,22 @@ resource "aws_s3_bucket_policy" "compass_policy" {
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
-      {
-        Sid       = "CURD_Object",
-        Effect    = "Allow",
-        Principal = "*",
-        Action    = [
-          "s3:GetObject",
-          "s3:ListBucket",
-          "s3:PutObject",
-          "s3:DeleteObject",
-        ],
-        Resource  = [
-          aws_s3_bucket.compass.arn,
-          "${aws_s3_bucket.compass.arn}/*",
-        ],
-      },
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::compass-ecom-bucket/*"
+        },
+        {
+            "Sid": "AllowUserPutObject",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::779996914529:user/compass"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::compass-ecom-bucket/*"
+        }
     ],
   })
 }
